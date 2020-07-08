@@ -7,7 +7,13 @@ let history = []
 // declare guesses remaining variable
 let guessesRemaining = 5;
 
-// function compares user value to randomly generated value
+// declare timer value
+let startTime = 30
+
+// declare setInterval value
+let timerInterval = setInterval(countDown, 1000)
+
+// function starts timer and compares values when btn is pushed
 function guessNumber() {
 
     // reset input box to 0
@@ -48,19 +54,25 @@ function guessNumber() {
     }
 
     history.push(guess)
-    document.getElementById("historyArea").innerHTML = `History ${history}`
+    document.getElementById("historyArea").innerHTML = `History <br/> ${history}`
+    console.log(history)
     document.getElementById("userGuess").value = ""
-
 }
 
-// reset
-// chances back to 5
-// reset random number
-// reset history
-//  clear input
-// reset result
+// timer function
+function countDown() {
+    if (startTime == -1) {
+        clearTimeout(timerInterval)
+        document.getElementById("remainingGuesses").innerHTML = `Out of time!`
+    } else {
+        document.getElementById("timer").innerHTML = `${startTime}`
+        startTime--
+    }
+}
 
+// reset function
 function resetNumber() {
+    startTime = 30
     guessesRemaining = 5
     randomNumber = Math.round(Math.random() * 100)
     history = []

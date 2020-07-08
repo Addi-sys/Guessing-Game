@@ -8,6 +8,12 @@ body {
     text-align: center;
 }
 
+.card-text {
+    color: cornsilk;
+    text-align: center;
+    margin-top: 4px;
+}
+
 .card {
     border-radius: 3em;
     background: rgba(0, 0, 0, 0.5);
