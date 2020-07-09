@@ -16,30 +16,32 @@ let timerInterval = setInterval(countDown, 1000)
 // function starts timer and compares values when btn is pushed
 function guessNumber() {
 
-    // reset input box to 0
-
     // call input value
     const guess = document.getElementById("userGuess").value;
-
-    // console.log("Guessing a number");
-
-    console.log(`User guessed ${guess}`);
 
     console.log(randomNumber)
 
     // compare user input to randomly generated number
     if (guess > 100 || guess < 0 || guess === "") {
         document.getElementById("remainingGuesses").innerHTML = `Please enter a number between 1 and 100!`
+        guessesRemaining = guessesRemaining - 1
+        if (guessesRemaining == 0) {
+            document.getElementById("remainingGuesses").innerHTML = `Out of guesses!`
+            return
+        }
     } else if (guess == randomNumber) {
         console.log("you win!")
         document.getElementById("remainingGuesses").innerHTML = `YOU WIN!`
-    } else if (guess < randomNumber) {
+        return
 
+    } else if (guess < randomNumber) {
         guessesRemaining = guessesRemaining - 1
         if (guessesRemaining <= 0) {
             document.getElementById("remainingGuesses").innerHTML = `Out of guesses!`
+            return
         } else {
             document.getElementById("remainingGuesses").innerHTML = `Too Low! <br/> Remaining guesses: ${guessesRemaining}`
+
         }
 
     } else {
@@ -47,6 +49,7 @@ function guessNumber() {
         guessesRemaining = guessesRemaining - 1
         if (guessesRemaining <= 0) {
             document.getElementById("remainingGuesses").innerHTML = `Out of guesses!`
+            return
         } else {
             document.getElementById("remainingGuesses").innerHTML = `Too high! <br/> Remaining guesses: ${guessesRemaining}`
         }
