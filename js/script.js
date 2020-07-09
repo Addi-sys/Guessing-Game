@@ -20,11 +20,9 @@ function guessNumber() {
     const guess = document.getElementById("userGuess").value;
 
     // loop over history array to check input is not repeated
-    for (i = 0; i < history.length; i++) {
-        if (history[i] === guess) {
-            document.getElementById("remainingGuesses").innerHTML = `You guessed that number already!`
-            return
-        }
+    if (history.includes(guess)) {
+        document.getElementById("remainingGuesses").innerHTML = `You guessed that number already!`
+        return
     }
     console.log(randomNumber)
 
@@ -73,6 +71,7 @@ function countDown() {
     if (startTime == -1) {
         clearTimeout(timerInterval)
         document.getElementById("remainingGuesses").innerHTML = `Out of time!`
+        setTimeout(resetNumber, 3000)
     } else {
         document.getElementById("timer").innerHTML = `${startTime}`
         startTime--
