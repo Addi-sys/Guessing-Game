@@ -19,6 +19,13 @@ function guessNumber() {
     // call input value
     const guess = document.getElementById("userGuess").value;
 
+    // loop over history array to check input is not repeated
+    for (i = 0; i < history.length; i++) {
+        if (history[i] === guess) {
+            document.getElementById("remainingGuesses").innerHTML = `You guessed that number already!`
+            return
+        }
+    }
     console.log(randomNumber)
 
     // compare user input to randomly generated number
@@ -27,7 +34,7 @@ function guessNumber() {
         guessesRemaining = guessesRemaining - 1
         if (guessesRemaining == 0) {
             document.getElementById("remainingGuesses").innerHTML = `Out of guesses!`
-            return
+            setTimeout(resetNumber, 3000)
         }
     } else if (guess == randomNumber) {
         console.log("you win!")
@@ -38,10 +45,9 @@ function guessNumber() {
         guessesRemaining = guessesRemaining - 1
         if (guessesRemaining <= 0) {
             document.getElementById("remainingGuesses").innerHTML = `Out of guesses!`
-            return
+            setTimeout(resetNumber, 3000)
         } else {
             document.getElementById("remainingGuesses").innerHTML = `Too Low! <br/> Remaining guesses: ${guessesRemaining}`
-
         }
 
     } else {
@@ -49,7 +55,7 @@ function guessNumber() {
         guessesRemaining = guessesRemaining - 1
         if (guessesRemaining <= 0) {
             document.getElementById("remainingGuesses").innerHTML = `Out of guesses!`
-            return
+            setTimeout(resetNumber, 3000)
         } else {
             document.getElementById("remainingGuesses").innerHTML = `Too high! <br/> Remaining guesses: ${guessesRemaining}`
         }
